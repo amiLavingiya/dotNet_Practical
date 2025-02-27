@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Enter Subject Hours";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h4 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+            .form-group label {
+                font-weight: bold;
+                flex: 1;
+                font-size: 13px;
+            }
+
+            .form-group input {
+                flex: 2;
+                padding: 8px;
+                font-size: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+        hr {
+            margin: 10px 0;
+            border: 0;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            background-color: #5d6d7e;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #808b96;
+            }
+    </style>
+</head>
+<body>
+
+    <h4>Hours for Each Subject</h4>
+
+    <div class="form-container">
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            <p class="error-message">@ViewBag.Error</p>
+        }
+
+        <form method="post" asp-action="Generate">
+            <input type="hidden" name="totalHours" value="@ViewBag.TotalHours" />
+
+            @for (int i = 0; i < ViewBag.TotalSubjects; i++)
+            {
+                <div class="form-group">
+                    <label for="subject-@i">Subject Name:</label>
+                    <input type="text" id="subject-@i" name="subjects" placeholder="Enter subject" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="hours-@i">Hours:</label>
+                    <input type="number" id="hours-@i" name="hours" min="1" placeholder="Enter hours" required />
+                </div>
+
+                <hr />
+            }
+             @if (string.IsNullOrEmpty(ViewBag.Error))
+            {
+                <button type="submit">Generate Timetable</button>
+            }
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿@model DotNetPratical.Models.UserInput
+@{
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h4 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size:13px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                font-weight: bold;
+                flex: 1;
+            }
+
+            .form-group input {
+                flex: 2;
+                padding: 8px;
+                font-size: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #5d6d7e;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            align-self:center;
+        }
+
+            button:hover {
+                background-color: #808b96;
+            }
+    </style>
+</head>
+<body>
+
+    <h4>Timetable Details</h4>
+
+    <div class="form-container">
+        <form method="post" asp-action="CalculateHours">
+            <div class="form-group">
+                <label for="WorkingDays">Working Days:</label>
+                <input type="number" class="col-sm-2" id="WorkingDays" name="WorkingDays" min="1" max="7" required />
+            </div>
+
+            <div class="form-group">
+                <label for="subjectsPerDay">Subjects per Day:</label>
+                <input type="number" id="subjectsPerDay" name="subjectsPerDay" min="1" max="8" required />
+            </div>
+
+            <div class="form-group">
+                <label for="totalSubjects">Total Subjects:</label>
+                <input type="number" id="totalSubjects" name="totalSubjects" min="1" required />
+            </div>
+
+            <button type="submit">Calculate</button>
+        </form>
+    </div>
+
+</body>
+</html>

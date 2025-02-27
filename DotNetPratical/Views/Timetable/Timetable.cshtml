@@ -1,0 +1,107 @@
+﻿@model List<List<string>>
+
+@{
+    ViewData["Title"] = "Generated Timetable";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .table-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        td {
+            font-size: 14px;
+            color: #333;
+        }
+
+       
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-back {
+            padding: 10px 20px;
+            font-size: 14px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+            .btn-back:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+
+    <h2>Timetable</h2>
+
+    <div class="table-container">
+        <table>
+           
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                       
+                        @foreach (var subject in Model[i])
+                        {
+                            <td>@subject</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="btn-container">
+            <a asp-action="Index" >Back</a>
+        </div>
+    </div>
+
+</body>
+</html>
